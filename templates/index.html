@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg,#F7CFD8,#F4F8D3,#A6D6D6,#8E7DBE);
+            color: #222;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 90%;
+            width: 700px;
+            background-color: rgb(2, 42, 117);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            margin: 60px auto;
+            border-radius: 16px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ec1e1a;
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        h1::before {
+            content: "📰🤖✨ ";
+        }
+
+        h1::after {
+            content: " ✨🤖📰";
+        }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: none;
+            background-color: #f2f2f2;
+            color: #000;
+            resize: vertical;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 6px #000;
+        }
+
+        .file-input {
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        input[type="file"],
+        input[type="url"] {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            background-color: #e0510e;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #b4320a;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 20px;
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .result strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #ff0000ee;
+            font-size: 22px;
+        }
+
+        /* Disclaimer scrolling text */
+        .disclaimer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+           
+            color: #fa0a0a;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            font-size: 17px;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .disclaimer p {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scroll-text 20s linear infinite;
+        }
+
+        @keyframes scroll-text {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fake News Detector</h1>
+        <form method="POST" action="/predict" enctype="multipart/form-data">
+            <textarea name="article" placeholder="Paste your news article here...">{% if article %}{{ article }}{% endif %}</textarea>
+
+            <div class="file-input">
+                <label>Upload a News Image or PDF:</label><br>
+                <input type="file" name="image" accept=".png,.jpg,.jpeg,.pdf">
+            </div>
+            <div class="file-input">
+                <label>Enter a News URL:</label><br>
+                <input type="url" name="url" placeholder="https://example.com/news" value="{% if url %}{{ url }}{% endif %}">
+            </div>
+
+
+            <input type="submit" value="Predict Now" class="button">
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            {% if prediction == "Fake News ❌" %}
+                <strong>⚠️ Fake News - {{ '%.2f'|format(100 - confidence) }}% Confidence</strong>
+            {% else %}
+                <strong>Prediction:</strong> {{ prediction }}<br>
+                <strong>Confidence:</strong> {{ '%.2f'|format(confidence) }}%
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Disclaimer message -->
+    <div class="disclaimer">
+        <p>❌ This is under development. Kindly recheck the information 🔍</p>
+    </div>
+</body>
+</html>
