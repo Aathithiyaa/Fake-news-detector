@@ -3,7 +3,7 @@
 
 A powerful Chrome extension and web app that detects whether a news article or a snippet is **real or fake** using an LSTM-based deep learning model.
 
-## 🔍 Overview
+## Overview
 
 This project consists of:
 - A **Chrome Extension** for real-time fake news detection on the web.
@@ -13,7 +13,7 @@ This project consists of:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 FAKE-NEWS-DETECTOR/
@@ -38,17 +38,17 @@ FAKE-NEWS-DETECTOR/
 
 ---
 
-## 🚀 Features
+##  Features
 
-- 🔎 **Detect fake news** in real-time via Chrome extension or web form.
-- 🧠 **Deep Learning (LSTM)** model for text classification.
-- 🖼️ **OCR support** to analyze news from images.
-- 🌐 **URL extraction** for scraping news articles.
-- 🔧 Easy integration via a local Flask server.
+-  **Detect fake news** in real-time via Chrome extension or web form.
+-  **Deep Learning (LSTM)** model for text classification.
+-  **OCR support** to analyze news from images.
+-  **URL extraction** for scraping news articles.
+-  Easy integration via a local Flask server.
 
 ---
 
-## 🧠 Model Details
+##  Model Details
 
 - **Architecture**: LSTM
 - **Input**: Tokenized and padded sequences of text.
@@ -57,7 +57,7 @@ FAKE-NEWS-DETECTOR/
 
 ---
 
-## 🧪 How It Works
+##  How It Works
 
 1. **Chrome Extension**:
    - User pastes or selects a news snippet.
@@ -72,14 +72,14 @@ FAKE-NEWS-DETECTOR/
 
 ---
 
-## 🛠️ Setup Instructions
+##  Setup Instructions
 
-### 🔧 Prerequisites
+###  Prerequisites
 - Python 3.7+
 - Google Chrome
 - Tesseract OCR (for image-based detection)
 
-### 📦 Install Dependencies
+###  Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -90,7 +90,7 @@ pip install -r requirements.txt
 pip install flask tensorflow newspaper3k pillow pytesseract flask-cors
 ```
 
-### 🖼️ Tesseract OCR Setup (Windows Only)
+###  Tesseract OCR Setup (Windows Only)
 
 - Install from: https://github.com/tesseract-ocr/tesseract
 - Update paths in `app.py`:
@@ -101,7 +101,7 @@ os.environ['TESSDATA_PREFIX'] = r'C:\Program Files\Tesseract-OCR\tessdata'
 
 ---
 
-## 🖥️ Running the Application
+##  Running the Application
 
 ### 1. Start the Flask Server
 
@@ -122,7 +122,7 @@ Flask will start at: `http://127.0.0.1:5000`
 
 ---
 
-## 🔗 API Endpoints
+##  API Endpoints
 
 ### `POST /predict`
 
@@ -139,20 +139,6 @@ Flask will start at: `http://127.0.0.1:5000`
   "confidence": 92.3
 }
 ```
-
----
-
-## 📸 Screenshots
-
-![UI](./screenshots/ui.png) <!-- Replace with actual screenshots if needed -->
-
----
-
-## 🧑‍💻 Author
-
-**Developed by:** *Your Name Here*
-
----
 
 ## 📜 License
 
