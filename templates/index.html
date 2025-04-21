@@ -161,16 +161,16 @@
             <input type="submit" value="Predict Now" class="button">
         </form>
 
-        {% if prediction %}
+       
         <div class="result">
-            {% if prediction == "Fake News ❌" %}
+            
                 <strong>⚠️ Fake News - {{ '%.2f'|format(100 - confidence) }}% Confidence</strong>
-            {% else %}
+            
                 <strong>Prediction:</strong> {{ prediction }}<br>
                 <strong>Confidence:</strong> {{ '%.2f'|format(confidence) }}%
-            {% endif %}
+            
         </div>
-        {% endif %}
+        
     </div>
 
     <!-- Disclaimer message -->
